@@ -1,5 +1,3 @@
----
-title: Developmental regulation
----
+# Developmental regulation
 
-# Introduction
+Welcome to the living documentation of the analysis of cross-species developmental regulation.

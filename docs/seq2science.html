@@ -1,0 +1,2227 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Preprocessing with seq2science &#8212; Developmental Conservation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/logo.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="This is a title" href="../analysis/conserved%20motifs.html" />
+    <link rel="prev" title="Developmental regulation" href="introduction.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Developmental Conservation</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="introduction.html">
+   Developmental regulation
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Preprocessing
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Preprocessing with seq2science
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Preprocessing
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../analysis/conserved%20motifs.html">
+   This is a title
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/seq2science.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/vanheeringen-lab/DevelopmentalBiology"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/vanheeringen-lab/DevelopmentalBiology/issues/new?title=Issue%20on%20page%20%2Fdocs/seq2science.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/vanheeringen-lab/DevelopmentalBiology/edit/master/docs/seq2science.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/vanheeringen-lab/DevelopmentalBiology/master?urlpath=tree/docs/seq2science.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/vanheeringen-lab/DevelopmentalBiology/blob/master/docs/seq2science.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="preprocessing-with-seq2science">
+<h1>Preprocessing with seq2science<a class="headerlink" href="#preprocessing-with-seq2science" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_rows&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+<span class="n">google_spreadsheet</span> <span class="o">=</span> <span class="s2">&quot;https://docs.google.com/spreadsheets/d/1X2YiJ-ZlX5usBGFr2L_-Jmt_NkLDJeu8m2jq4OjyEXI/export?gid=664155010&amp;format=tsv&quot;</span>
+<span class="n">samples_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">google_spreadsheet</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">samples_table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sample</th>
+      <th>assembly</th>
+      <th>condition</th>
+      <th>replicate</th>
+      <th>hpf</th>
+      <th>descriptive_name</th>
+      <th>control</th>
+      <th>study</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>TShield_1</td>
+      <td>ASM318616v1</td>
+      <td>shield</td>
+      <td>NaN</td>
+      <td>27.00</td>
+      <td>shield_rep1</td>
+      <td>NaN</td>
+      <td>unpublished_tena_skarmeta</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>TShield_2</td>
+      <td>ASM318616v1</td>
+      <td>shield</td>
+      <td>NaN</td>
+      <td>27.00</td>
+      <td>shield_rep2</td>
+      <td>NaN</td>
+      <td>unpublished_tena_skarmeta</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>T80e_1</td>
+      <td>ASM318616v1</td>
+      <td>80epiboly</td>
+      <td>NaN</td>
+      <td>32.00</td>
+      <td>80epiboly_rep1</td>
+      <td>NaN</td>
+      <td>unpublished_tena_skarmeta</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>T80e_2</td>
+      <td>ASM318616v1</td>
+      <td>80epiboly</td>
+      <td>NaN</td>
+      <td>32.00</td>
+      <td>80epiboly_rep2</td>
+      <td>NaN</td>
+      <td>unpublished_tena_skarmeta</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>T8som_1</td>
+      <td>ASM318616v1</td>
+      <td>8som</td>
+      <td>NaN</td>
+      <td>46.00</td>
+      <td>8som_rep1</td>
+      <td>NaN</td>
+      <td>unpublished_tena_skarmeta</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>T8som_2</td>
+      <td>ASM318616v1</td>
+      <td>8som</td>
+      <td>NaN</td>
+      <td>46.00</td>
+      <td>8som_rep2</td>
+      <td>NaN</td>
+      <td>unpublished_tena_skarmeta</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>TPhylo_1</td>
+      <td>ASM318616v1</td>
+      <td>phylo</td>
+      <td>NaN</td>
+      <td>72.00</td>
+      <td>phylo_rep1</td>
+      <td>NaN</td>
+      <td>unpublished_tena_skarmeta</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>TPhylo_2</td>
+      <td>ASM318616v1</td>
+      <td>phylo</td>
+      <td>NaN</td>
+      <td>72.00</td>
+      <td>phylo_rep2</td>
+      <td>NaN</td>
+      <td>unpublished_tena_skarmeta</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>SF80e_1</td>
+      <td>Astyanax_mexicanus-2.0</td>
+      <td>80epiboly</td>
+      <td>NaN</td>
+      <td>8.00</td>
+      <td>80epiboly_rep1</td>
+      <td>NaN</td>
+      <td>unpublished_tena_skarmeta</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>SF80e_2</td>
+      <td>Astyanax_mexicanus-2.0</td>
+      <td>80epiboly</td>
+      <td>NaN</td>
+      <td>8.00</td>
+      <td>80epiboly_rep2</td>
+      <td>NaN</td>
+      <td>unpublished_tena_skarmeta</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>SF80e_3</td>
+      <td>Astyanax_mexicanus-2.0</td>
+      <td>80epiboly</td>
+      <td>NaN</td>
+      <td>8.00</td>
+      <td>80epiboly_rep3</td>
+      <td>NaN</td>
+      <td>unpublished_tena_skarmeta</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>SF5ss_1</td>
+      <td>Astyanax_mexicanus-2.0</td>
+      <td>5somites</td>
+      <td>NaN</td>
+      <td>12.00</td>
+      <td>5somites_rep1</td>
+      <td>NaN</td>
+      <td>unpublished_tena_skarmeta</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>SF5ss_2</td>
+      <td>Astyanax_mexicanus-2.0</td>
+      <td>5somites</td>
+      <td>NaN</td>
+      <td>12.00</td>
+      <td>5somites_rep2</td>
+      <td>NaN</td>
+      <td>unpublished_tena_skarmeta</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>SF24hpf_2</td>
+      <td>Astyanax_mexicanus-2.0</td>
+      <td>24hpf</td>
+      <td>NaN</td>
+      <td>24.00</td>
+      <td>24hpf_rep1</td>
+      <td>NaN</td>
+      <td>unpublished_tena_skarmeta</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>SF24hpf_3</td>
+      <td>Astyanax_mexicanus-2.0</td>
+      <td>24hpf</td>
+      <td>NaN</td>
+      <td>24.00</td>
+      <td>24hpf_rep2</td>
+      <td>NaN</td>
+      <td>unpublished_tena_skarmeta</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>SF48hpf_2</td>
+      <td>Astyanax_mexicanus-2.0</td>
+      <td>48hpf</td>
+      <td>NaN</td>
+      <td>48.00</td>
+      <td>48hpf_rep1</td>
+      <td>NaN</td>
+      <td>unpublished_tena_skarmeta</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>SF48hpf_3</td>
+      <td>Astyanax_mexicanus-2.0</td>
+      <td>48hpf</td>
+      <td>NaN</td>
+      <td>48.00</td>
+      <td>48hpf_rep2</td>
+      <td>NaN</td>
+      <td>unpublished_tena_skarmeta</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Xt_stage9_rep2</td>
+      <td>xenTro9</td>
+      <td>st9</td>
+      <td>NaN</td>
+      <td>7.00</td>
+      <td>st9_rep2</td>
+      <td>NaN</td>
+      <td>unpublished_internal</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Xt_stage105_rep2</td>
+      <td>xenTro9</td>
+      <td>st10.5</td>
+      <td>NaN</td>
+      <td>11.00</td>
+      <td>st10.5_rep2</td>
+      <td>NaN</td>
+      <td>unpublished_internal</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Xt_stage105_rep3</td>
+      <td>xenTro9</td>
+      <td>st10.5</td>
+      <td>NaN</td>
+      <td>11.00</td>
+      <td>st10.5_rep3</td>
+      <td>NaN</td>
+      <td>unpublished_internal</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Xt_stage12_rep1</td>
+      <td>xenTro9</td>
+      <td>st12</td>
+      <td>NaN</td>
+      <td>13.25</td>
+      <td>st12_rep1</td>
+      <td>NaN</td>
+      <td>unpublished_internal</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Xt_stage12_rep2</td>
+      <td>xenTro9</td>
+      <td>st12</td>
+      <td>NaN</td>
+      <td>13.25</td>
+      <td>st12_rep2</td>
+      <td>NaN</td>
+      <td>unpublished_internal</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Xt_stage16_rep2</td>
+      <td>xenTro9</td>
+      <td>st16</td>
+      <td>NaN</td>
+      <td>18.25</td>
+      <td>st16_rep2</td>
+      <td>NaN</td>
+      <td>unpublished_internal</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Xt_stage16_rep1</td>
+      <td>xenTro9</td>
+      <td>st16</td>
+      <td>NaN</td>
+      <td>18.25</td>
+      <td>st16_rep1</td>
+      <td>NaN</td>
+      <td>unpublished_internal</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Xt_stage26_rep1</td>
+      <td>xenTro9</td>
+      <td>st26</td>
+      <td>NaN</td>
+      <td>29.50</td>
+      <td>st26_rep1</td>
+      <td>NaN</td>
+      <td>unpublished_internal</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Xt_stage26_rep2</td>
+      <td>xenTro9</td>
+      <td>st26</td>
+      <td>NaN</td>
+      <td>29.50</td>
+      <td>st26_rep2</td>
+      <td>NaN</td>
+      <td>unpublished_internal</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Xt_stage34_rep1</td>
+      <td>xenTro9</td>
+      <td>st34</td>
+      <td>NaN</td>
+      <td>44.50</td>
+      <td>st34_rep1</td>
+      <td>NaN</td>
+      <td>unpublished_internal</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Xt_stage34_rep2</td>
+      <td>xenTro9</td>
+      <td>st34</td>
+      <td>NaN</td>
+      <td>44.50</td>
+      <td>st34_rep2</td>
+      <td>NaN</td>
+      <td>unpublished_internal</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>GSM2837485</td>
+      <td>BraLan2</td>
+      <td>8hpf</td>
+      <td>NaN</td>
+      <td>8.00</td>
+      <td>8h_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41586-018-0734-6</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>GSM2837486</td>
+      <td>BraLan2</td>
+      <td>8hpf</td>
+      <td>NaN</td>
+      <td>8.00</td>
+      <td>8h_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41586-018-0734-6</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>GSM2837480</td>
+      <td>BraLan2</td>
+      <td>15hpf</td>
+      <td>NaN</td>
+      <td>15.00</td>
+      <td>15h_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41586-018-0734-6</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>GSM2837481</td>
+      <td>BraLan2</td>
+      <td>15hpf</td>
+      <td>NaN</td>
+      <td>15.00</td>
+      <td>15h_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41586-018-0734-6</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>GSM2837482</td>
+      <td>BraLan2</td>
+      <td>36hpf</td>
+      <td>NaN</td>
+      <td>36.00</td>
+      <td>36h_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41586-018-0734-6</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>GSM2837483</td>
+      <td>BraLan2</td>
+      <td>60hpf</td>
+      <td>NaN</td>
+      <td>60.00</td>
+      <td>60h_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41586-018-0734-6</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>GSM2837484</td>
+      <td>BraLan2</td>
+      <td>60hpf</td>
+      <td>NaN</td>
+      <td>60.00</td>
+      <td>60h_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41586-018-0734-6</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>GSM3756599</td>
+      <td>danRer11</td>
+      <td>256cell</td>
+      <td>NaN</td>
+      <td>2.50</td>
+      <td>256cell_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1371/journal.pgen.1008546</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>GSM3756600</td>
+      <td>danRer11</td>
+      <td>256cell</td>
+      <td>NaN</td>
+      <td>2.50</td>
+      <td>256cell_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1371/journal.pgen.1008546</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>GSM3756606</td>
+      <td>danRer11</td>
+      <td>high</td>
+      <td>NaN</td>
+      <td>3.30</td>
+      <td>high_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1371/journal.pgen.1008546</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>GSM3756607</td>
+      <td>danRer11</td>
+      <td>high</td>
+      <td>NaN</td>
+      <td>3.30</td>
+      <td>high_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1371/journal.pgen.1008546</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>GSM3756608</td>
+      <td>danRer11</td>
+      <td>high</td>
+      <td>NaN</td>
+      <td>3.30</td>
+      <td>high_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1371/journal.pgen.1008546</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>GSM3756609</td>
+      <td>danRer11</td>
+      <td>oblong</td>
+      <td>NaN</td>
+      <td>3.60</td>
+      <td>oblong_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1371/journal.pgen.1008546</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>GSM3756610</td>
+      <td>danRer11</td>
+      <td>oblong</td>
+      <td>NaN</td>
+      <td>3.60</td>
+      <td>oblong_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1371/journal.pgen.1008546</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>GSM3756611</td>
+      <td>danRer11</td>
+      <td>oblong</td>
+      <td>NaN</td>
+      <td>3.60</td>
+      <td>oblong_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1371/journal.pgen.1008546</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>GSM3756614</td>
+      <td>danRer11</td>
+      <td>sphere</td>
+      <td>NaN</td>
+      <td>4.00</td>
+      <td>sphere_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1371/journal.pgen.1008546</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>GSM3756615</td>
+      <td>danRer11</td>
+      <td>sphere</td>
+      <td>NaN</td>
+      <td>4.00</td>
+      <td>sphere_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1371/journal.pgen.1008546</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>GSM2837495</td>
+      <td>danRer11</td>
+      <td>dome</td>
+      <td>NaN</td>
+      <td>4.30</td>
+      <td>dome_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41586-018-0734-6</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>GSM2837497</td>
+      <td>danRer11</td>
+      <td>dome</td>
+      <td>NaN</td>
+      <td>4.30</td>
+      <td>dome_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41586-018-0734-6</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>GSM3756603</td>
+      <td>danRer11</td>
+      <td>dome</td>
+      <td>NaN</td>
+      <td>4.30</td>
+      <td>dome_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1371/journal.pgen.1008546</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>GSM3756604</td>
+      <td>danRer11</td>
+      <td>dome</td>
+      <td>NaN</td>
+      <td>4.30</td>
+      <td>dome_rep4</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1371/journal.pgen.1008546</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>GSM3756605</td>
+      <td>danRer11</td>
+      <td>dome</td>
+      <td>NaN</td>
+      <td>4.30</td>
+      <td>dome_rep5</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1371/journal.pgen.1008546</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>GSM2837496</td>
+      <td>danRer11</td>
+      <td>shield</td>
+      <td>NaN</td>
+      <td>6.00</td>
+      <td>shield_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41586-018-0734-6</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>GSM2837498</td>
+      <td>danRer11</td>
+      <td>shield</td>
+      <td>NaN</td>
+      <td>6.00</td>
+      <td>shield_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41586-018-0734-6</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>GSM3756612</td>
+      <td>danRer11</td>
+      <td>shield</td>
+      <td>NaN</td>
+      <td>6.00</td>
+      <td>shield_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1371/journal.pgen.1008546</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>GSM3756613</td>
+      <td>danRer11</td>
+      <td>shield</td>
+      <td>NaN</td>
+      <td>6.00</td>
+      <td>shield_rep4</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1371/journal.pgen.1008546</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>GSM2837491</td>
+      <td>danRer11</td>
+      <td>80epiboly</td>
+      <td>NaN</td>
+      <td>8.50</td>
+      <td>80epiboly_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41586-018-0734-6</td>
+    </tr>
+    <tr>
+      <th>55</th>
+      <td>GSM2837492</td>
+      <td>danRer11</td>
+      <td>80epiboly</td>
+      <td>NaN</td>
+      <td>8.50</td>
+      <td>80epiboly_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41586-018-0734-6</td>
+    </tr>
+    <tr>
+      <th>56</th>
+      <td>GSM3756601</td>
+      <td>danRer11</td>
+      <td>80epiboly</td>
+      <td>NaN</td>
+      <td>8.50</td>
+      <td>80epiboly_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1371/journal.pgen.1008546</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>GSM3756602</td>
+      <td>danRer11</td>
+      <td>80epiboly</td>
+      <td>NaN</td>
+      <td>8.50</td>
+      <td>80epiboly_rep4</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1371/journal.pgen.1008546</td>
+    </tr>
+    <tr>
+      <th>58</th>
+      <td>GSM2837493</td>
+      <td>danRer11</td>
+      <td>8somites</td>
+      <td>NaN</td>
+      <td>13.00</td>
+      <td>8somites_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41586-018-0734-6</td>
+    </tr>
+    <tr>
+      <th>59</th>
+      <td>GSM2837494</td>
+      <td>danRer11</td>
+      <td>8somites</td>
+      <td>NaN</td>
+      <td>13.00</td>
+      <td>8somites_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41586-018-0734-6</td>
+    </tr>
+    <tr>
+      <th>60</th>
+      <td>GSM3494511</td>
+      <td>danRer11</td>
+      <td>8somites</td>
+      <td>NaN</td>
+      <td>13.00</td>
+      <td>8somites_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41467-019-11121-z</td>
+    </tr>
+    <tr>
+      <th>61</th>
+      <td>GSM3494510</td>
+      <td>danRer11</td>
+      <td>8somites</td>
+      <td>NaN</td>
+      <td>13.00</td>
+      <td>8omites_rep4</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41467-019-11121-z</td>
+    </tr>
+    <tr>
+      <th>62</th>
+      <td>GSM3494509</td>
+      <td>danRer11</td>
+      <td>36hpf</td>
+      <td>NaN</td>
+      <td>36.00</td>
+      <td>36hpf_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41467-019-11121-z</td>
+    </tr>
+    <tr>
+      <th>63</th>
+      <td>GSM3494508</td>
+      <td>danRer11</td>
+      <td>36hpf</td>
+      <td>NaN</td>
+      <td>36.00</td>
+      <td>36hpf_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41467-019-11121-z</td>
+    </tr>
+    <tr>
+      <th>64</th>
+      <td>GSM2837489</td>
+      <td>danRer11</td>
+      <td>48hpf</td>
+      <td>NaN</td>
+      <td>48.00</td>
+      <td>48hpf_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41586-018-0734-6</td>
+    </tr>
+    <tr>
+      <th>65</th>
+      <td>GSM2837490</td>
+      <td>danRer11</td>
+      <td>48hpf</td>
+      <td>NaN</td>
+      <td>48.00</td>
+      <td>48hpf_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41586-018-0734-6</td>
+    </tr>
+    <tr>
+      <th>66</th>
+      <td>DRR138947</td>
+      <td>GRCg6a</td>
+      <td>HH6</td>
+      <td>NaN</td>
+      <td>24.00</td>
+      <td>HH6_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>67</th>
+      <td>DRR138948</td>
+      <td>GRCg6a</td>
+      <td>HH6</td>
+      <td>NaN</td>
+      <td>24.00</td>
+      <td>HH6_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>DRR138949</td>
+      <td>GRCg6a</td>
+      <td>HH6</td>
+      <td>NaN</td>
+      <td>24.00</td>
+      <td>HH6_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>DRR138950</td>
+      <td>GRCg6a</td>
+      <td>HH11</td>
+      <td>NaN</td>
+      <td>42.50</td>
+      <td>HH11_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>70</th>
+      <td>DRR138951</td>
+      <td>GRCg6a</td>
+      <td>HH11</td>
+      <td>NaN</td>
+      <td>42.50</td>
+      <td>HH11_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>71</th>
+      <td>DRR138952</td>
+      <td>GRCg6a</td>
+      <td>HH11</td>
+      <td>NaN</td>
+      <td>42.50</td>
+      <td>HH11_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>72</th>
+      <td>DRR138953</td>
+      <td>GRCg6a</td>
+      <td>HH16</td>
+      <td>NaN</td>
+      <td>53.50</td>
+      <td>HH16_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>73</th>
+      <td>DRR138954</td>
+      <td>GRCg6a</td>
+      <td>HH16</td>
+      <td>NaN</td>
+      <td>53.50</td>
+      <td>HH16_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>74</th>
+      <td>DRR138955</td>
+      <td>GRCg6a</td>
+      <td>HH16</td>
+      <td>NaN</td>
+      <td>53.50</td>
+      <td>HH16_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>75</th>
+      <td>DRR138956</td>
+      <td>GRCg6a</td>
+      <td>HH19</td>
+      <td>NaN</td>
+      <td>78.00</td>
+      <td>HH19_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>76</th>
+      <td>DRR138957</td>
+      <td>GRCg6a</td>
+      <td>HH19</td>
+      <td>NaN</td>
+      <td>78.00</td>
+      <td>HH19_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>77</th>
+      <td>DRR138958</td>
+      <td>GRCg6a</td>
+      <td>HH19</td>
+      <td>NaN</td>
+      <td>78.00</td>
+      <td>HH19_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>78</th>
+      <td>DRR138959</td>
+      <td>GRCg6a</td>
+      <td>HH24</td>
+      <td>NaN</td>
+      <td>108.00</td>
+      <td>HH24_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>79</th>
+      <td>DRR138960</td>
+      <td>GRCg6a</td>
+      <td>HH24</td>
+      <td>NaN</td>
+      <td>108.00</td>
+      <td>HH24_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>80</th>
+      <td>DRR138961</td>
+      <td>GRCg6a</td>
+      <td>HH24</td>
+      <td>NaN</td>
+      <td>108.00</td>
+      <td>HH24_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>81</th>
+      <td>DRR138962</td>
+      <td>GRCg6a</td>
+      <td>HH28</td>
+      <td>NaN</td>
+      <td>138.00</td>
+      <td>HH28_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>82</th>
+      <td>DRR138963</td>
+      <td>GRCg6a</td>
+      <td>HH28</td>
+      <td>NaN</td>
+      <td>138.00</td>
+      <td>HH28_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>83</th>
+      <td>DRR138964</td>
+      <td>GRCg6a</td>
+      <td>HH28</td>
+      <td>NaN</td>
+      <td>138.00</td>
+      <td>HH28_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>84</th>
+      <td>DRR138965</td>
+      <td>GRCg6a</td>
+      <td>HH32</td>
+      <td>NaN</td>
+      <td>180.00</td>
+      <td>HH32_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>85</th>
+      <td>DRR138966</td>
+      <td>GRCg6a</td>
+      <td>HH32</td>
+      <td>NaN</td>
+      <td>180.00</td>
+      <td>HH32_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>86</th>
+      <td>DRR138967</td>
+      <td>GRCg6a</td>
+      <td>HH32</td>
+      <td>NaN</td>
+      <td>180.00</td>
+      <td>HH32_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>87</th>
+      <td>DRR138968</td>
+      <td>GRCg6a</td>
+      <td>HH38</td>
+      <td>NaN</td>
+      <td>288.00</td>
+      <td>HH38_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>88</th>
+      <td>DRR138969</td>
+      <td>GRCg6a</td>
+      <td>HH38</td>
+      <td>NaN</td>
+      <td>288.00</td>
+      <td>HH38_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>89</th>
+      <td>DRR138970</td>
+      <td>GRCg6a</td>
+      <td>HH38</td>
+      <td>NaN</td>
+      <td>288.00</td>
+      <td>HH38_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>90</th>
+      <td>DRR138923</td>
+      <td>GRCm39</td>
+      <td>st7.5</td>
+      <td>NaN</td>
+      <td>180.00</td>
+      <td>st7.5_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>91</th>
+      <td>DRR138924</td>
+      <td>GRCm39</td>
+      <td>st7.5</td>
+      <td>NaN</td>
+      <td>180.00</td>
+      <td>st7.5_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>92</th>
+      <td>DRR138925</td>
+      <td>GRCm39</td>
+      <td>st7.5</td>
+      <td>NaN</td>
+      <td>180.00</td>
+      <td>st7.5_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>93</th>
+      <td>DRR138926</td>
+      <td>GRCm39</td>
+      <td>st8.5</td>
+      <td>NaN</td>
+      <td>204.00</td>
+      <td>st8.5_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>94</th>
+      <td>DRR138927</td>
+      <td>GRCm39</td>
+      <td>st8.5</td>
+      <td>NaN</td>
+      <td>204.00</td>
+      <td>st8.5_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>DRR138928</td>
+      <td>GRCm39</td>
+      <td>st8.5</td>
+      <td>NaN</td>
+      <td>204.00</td>
+      <td>st8.5_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>DRR138929</td>
+      <td>GRCm39</td>
+      <td>st9.5</td>
+      <td>NaN</td>
+      <td>228.00</td>
+      <td>st9.5_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>DRR138930</td>
+      <td>GRCm39</td>
+      <td>st9.5</td>
+      <td>NaN</td>
+      <td>228.00</td>
+      <td>st9.5_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>DRR138931</td>
+      <td>GRCm39</td>
+      <td>st9.5</td>
+      <td>NaN</td>
+      <td>228.00</td>
+      <td>st9.5_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>DRR138932</td>
+      <td>GRCm39</td>
+      <td>st10.5</td>
+      <td>NaN</td>
+      <td>252.00</td>
+      <td>st10.5_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>100</th>
+      <td>DRR138933</td>
+      <td>GRCm39</td>
+      <td>st10.5</td>
+      <td>NaN</td>
+      <td>252.00</td>
+      <td>st10.5_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>101</th>
+      <td>DRR138934</td>
+      <td>GRCm39</td>
+      <td>st10.5</td>
+      <td>NaN</td>
+      <td>252.00</td>
+      <td>st10.5_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>DRR138935</td>
+      <td>GRCm39</td>
+      <td>st12.5</td>
+      <td>NaN</td>
+      <td>300.00</td>
+      <td>st12.5_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>DRR138936</td>
+      <td>GRCm39</td>
+      <td>st12.5</td>
+      <td>NaN</td>
+      <td>300.00</td>
+      <td>st12.5_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>104</th>
+      <td>DRR138937</td>
+      <td>GRCm39</td>
+      <td>st12.5</td>
+      <td>NaN</td>
+      <td>300.00</td>
+      <td>st12.5_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>105</th>
+      <td>DRR138938</td>
+      <td>GRCm39</td>
+      <td>st14.5</td>
+      <td>NaN</td>
+      <td>348.00</td>
+      <td>st14.5_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>106</th>
+      <td>DRR138939</td>
+      <td>GRCm39</td>
+      <td>st14.5</td>
+      <td>NaN</td>
+      <td>348.00</td>
+      <td>st14.5_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>107</th>
+      <td>DRR138992</td>
+      <td>GRCm39</td>
+      <td>st14.5</td>
+      <td>NaN</td>
+      <td>348.00</td>
+      <td>st14.5_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>108</th>
+      <td>DRR138940</td>
+      <td>GRCm39</td>
+      <td>st14.5</td>
+      <td>NaN</td>
+      <td>348.00</td>
+      <td>st14.5_rep4</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>109</th>
+      <td>DRR138941</td>
+      <td>GRCm39</td>
+      <td>st16.5</td>
+      <td>NaN</td>
+      <td>396.00</td>
+      <td>st16.5_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>110</th>
+      <td>DRR138942</td>
+      <td>GRCm39</td>
+      <td>st16.5</td>
+      <td>NaN</td>
+      <td>396.00</td>
+      <td>st16.5_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>111</th>
+      <td>DRR138943</td>
+      <td>GRCm39</td>
+      <td>st16.5</td>
+      <td>NaN</td>
+      <td>396.00</td>
+      <td>st16.5_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>112</th>
+      <td>DRR138944</td>
+      <td>GRCm39</td>
+      <td>st18.5</td>
+      <td>NaN</td>
+      <td>444.00</td>
+      <td>st18.5_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>113</th>
+      <td>DRR138993</td>
+      <td>GRCm39</td>
+      <td>st18.5</td>
+      <td>NaN</td>
+      <td>444.00</td>
+      <td>st18.5_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>114</th>
+      <td>DRR138945</td>
+      <td>GRCm39</td>
+      <td>st18.5</td>
+      <td>NaN</td>
+      <td>444.00</td>
+      <td>st18.5_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>115</th>
+      <td>DRR138946</td>
+      <td>GRCm39</td>
+      <td>st18.5</td>
+      <td>NaN</td>
+      <td>444.00</td>
+      <td>st18.5_rep4</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>116</th>
+      <td>DRR138994</td>
+      <td>GRCm39</td>
+      <td>st18.5</td>
+      <td>NaN</td>
+      <td>444.00</td>
+      <td>st18.5_rep5</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>117</th>
+      <td>GSM2837499</td>
+      <td>ASM223467v1</td>
+      <td>st11</td>
+      <td>NaN</td>
+      <td>8.25</td>
+      <td>st11_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41586-018-0734-6</td>
+    </tr>
+    <tr>
+      <th>118</th>
+      <td>GSM2837500</td>
+      <td>ASM223467v1</td>
+      <td>st11</td>
+      <td>NaN</td>
+      <td>8.25</td>
+      <td>st11_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41586-018-0734-6</td>
+    </tr>
+    <tr>
+      <th>119</th>
+      <td>GSM4039581</td>
+      <td>ASM223467v1</td>
+      <td>st11</td>
+      <td>NaN</td>
+      <td>8.25</td>
+      <td>st11_rep3</td>
+      <td>NaN</td>
+      <td>https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi...</td>
+    </tr>
+    <tr>
+      <th>120</th>
+      <td>GSM4558119</td>
+      <td>ASM223467v1</td>
+      <td>st11</td>
+      <td>NaN</td>
+      <td>8.25</td>
+      <td>st11_rep4</td>
+      <td>NaN</td>
+      <td>https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi...</td>
+    </tr>
+    <tr>
+      <th>121</th>
+      <td>GSM2837501</td>
+      <td>ASM223467v1</td>
+      <td>st13</td>
+      <td>NaN</td>
+      <td>13.00</td>
+      <td>st13_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41586-018-0734-6</td>
+    </tr>
+    <tr>
+      <th>122</th>
+      <td>GSM2837502</td>
+      <td>ASM223467v1</td>
+      <td>st13</td>
+      <td>NaN</td>
+      <td>13.00</td>
+      <td>st13_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41586-018-0734-6</td>
+    </tr>
+    <tr>
+      <th>123</th>
+      <td>DRR138971</td>
+      <td>ASM223467v1</td>
+      <td>st15</td>
+      <td>NaN</td>
+      <td>17.50</td>
+      <td>st15_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>124</th>
+      <td>DRR138972</td>
+      <td>ASM223467v1</td>
+      <td>st15</td>
+      <td>NaN</td>
+      <td>17.50</td>
+      <td>st15_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>125</th>
+      <td>DRR138973</td>
+      <td>ASM223467v1</td>
+      <td>st15</td>
+      <td>NaN</td>
+      <td>17.50</td>
+      <td>st15_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>126</th>
+      <td>GSM4039582</td>
+      <td>ASM223467v1</td>
+      <td>st15</td>
+      <td>NaN</td>
+      <td>17.50</td>
+      <td>st15_rep4</td>
+      <td>NaN</td>
+      <td>https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi...</td>
+    </tr>
+    <tr>
+      <th>127</th>
+      <td>GSM4558120</td>
+      <td>ASM223467v1</td>
+      <td>st15</td>
+      <td>NaN</td>
+      <td>17.50</td>
+      <td>st15_rep5</td>
+      <td>NaN</td>
+      <td>https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi...</td>
+    </tr>
+    <tr>
+      <th>128</th>
+      <td>GSM2837503</td>
+      <td>ASM223467v1</td>
+      <td>st19</td>
+      <td>NaN</td>
+      <td>27.50</td>
+      <td>st19_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41586-018-0734-6</td>
+    </tr>
+    <tr>
+      <th>129</th>
+      <td>GSM2837504</td>
+      <td>ASM223467v1</td>
+      <td>st19</td>
+      <td>NaN</td>
+      <td>27.50</td>
+      <td>st19_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41586-018-0734-6</td>
+    </tr>
+    <tr>
+      <th>130</th>
+      <td>GSM4039583</td>
+      <td>ASM223467v1</td>
+      <td>st19</td>
+      <td>NaN</td>
+      <td>27.50</td>
+      <td>st19_rep3</td>
+      <td>NaN</td>
+      <td>https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi...</td>
+    </tr>
+    <tr>
+      <th>131</th>
+      <td>GSM4558121</td>
+      <td>ASM223467v1</td>
+      <td>st19</td>
+      <td>NaN</td>
+      <td>27.50</td>
+      <td>st19_rep4</td>
+      <td>NaN</td>
+      <td>https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi...</td>
+    </tr>
+    <tr>
+      <th>132</th>
+      <td>DRR138974</td>
+      <td>ASM223467v1</td>
+      <td>st21</td>
+      <td>NaN</td>
+      <td>34.00</td>
+      <td>st21_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>133</th>
+      <td>DRR138975</td>
+      <td>ASM223467v1</td>
+      <td>st21</td>
+      <td>NaN</td>
+      <td>34.00</td>
+      <td>st21_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>134</th>
+      <td>DRR138976</td>
+      <td>ASM223467v1</td>
+      <td>st21</td>
+      <td>NaN</td>
+      <td>34.00</td>
+      <td>st21_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>135</th>
+      <td>DRR138995</td>
+      <td>ASM223467v1</td>
+      <td>st21</td>
+      <td>NaN</td>
+      <td>34.00</td>
+      <td>st21_rep4</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>136</th>
+      <td>DRR138996</td>
+      <td>ASM223467v1</td>
+      <td>st21</td>
+      <td>NaN</td>
+      <td>34.00</td>
+      <td>st21_rep5</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>137</th>
+      <td>DRR138997</td>
+      <td>ASM223467v1</td>
+      <td>st21</td>
+      <td>NaN</td>
+      <td>34.00</td>
+      <td>st21_rep6</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>138</th>
+      <td>DRR138977</td>
+      <td>ASM223467v1</td>
+      <td>st24</td>
+      <td>NaN</td>
+      <td>44.00</td>
+      <td>st24_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>139</th>
+      <td>DRR138978</td>
+      <td>ASM223467v1</td>
+      <td>st24</td>
+      <td>NaN</td>
+      <td>44.00</td>
+      <td>st24_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>140</th>
+      <td>DRR138979</td>
+      <td>ASM223467v1</td>
+      <td>st24</td>
+      <td>NaN</td>
+      <td>44.00</td>
+      <td>st24_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>141</th>
+      <td>GSM2837505</td>
+      <td>ASM223467v1</td>
+      <td>st25</td>
+      <td>NaN</td>
+      <td>50.00</td>
+      <td>st25_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41586-018-0734-6</td>
+    </tr>
+    <tr>
+      <th>142</th>
+      <td>GSM2837506</td>
+      <td>ASM223467v1</td>
+      <td>st25</td>
+      <td>NaN</td>
+      <td>50.00</td>
+      <td>st25_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41586-018-0734-6</td>
+    </tr>
+    <tr>
+      <th>143</th>
+      <td>GSM4558122</td>
+      <td>ASM223467v1</td>
+      <td>st25</td>
+      <td>NaN</td>
+      <td>50.00</td>
+      <td>st25_rep3</td>
+      <td>NaN</td>
+      <td>https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi...</td>
+    </tr>
+    <tr>
+      <th>144</th>
+      <td>GSM4558123</td>
+      <td>ASM223467v1</td>
+      <td>st25</td>
+      <td>NaN</td>
+      <td>50.00</td>
+      <td>st25_rep4</td>
+      <td>NaN</td>
+      <td>https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>DRR138980</td>
+      <td>ASM223467v1</td>
+      <td>st28</td>
+      <td>NaN</td>
+      <td>64.00</td>
+      <td>st28_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>DRR138998</td>
+      <td>ASM223467v1</td>
+      <td>st28</td>
+      <td>NaN</td>
+      <td>64.00</td>
+      <td>st28_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>DRR138999</td>
+      <td>ASM223467v1</td>
+      <td>st28</td>
+      <td>NaN</td>
+      <td>64.00</td>
+      <td>st28_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>DRR138981</td>
+      <td>ASM223467v1</td>
+      <td>st28</td>
+      <td>NaN</td>
+      <td>64.00</td>
+      <td>st28_rep4</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>DRR138982</td>
+      <td>ASM223467v1</td>
+      <td>st28</td>
+      <td>NaN</td>
+      <td>64.00</td>
+      <td>st28_rep5</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>150</th>
+      <td>GSM4558124</td>
+      <td>ASM223467v1</td>
+      <td>st29</td>
+      <td>NaN</td>
+      <td>74.00</td>
+      <td>st29_rep1</td>
+      <td>NaN</td>
+      <td>https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi...</td>
+    </tr>
+    <tr>
+      <th>151</th>
+      <td>GSM4558125</td>
+      <td>ASM223467v1</td>
+      <td>st29</td>
+      <td>NaN</td>
+      <td>74.00</td>
+      <td>st29_rep2</td>
+      <td>NaN</td>
+      <td>https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi...</td>
+    </tr>
+    <tr>
+      <th>152</th>
+      <td>GSM2837507</td>
+      <td>ASM223467v1</td>
+      <td>st32</td>
+      <td>NaN</td>
+      <td>101.00</td>
+      <td>st32_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41586-018-0734-6</td>
+    </tr>
+    <tr>
+      <th>153</th>
+      <td>GSM2837508</td>
+      <td>ASM223467v1</td>
+      <td>st32</td>
+      <td>NaN</td>
+      <td>101.00</td>
+      <td>st32_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1038/s41586-018-0734-6</td>
+    </tr>
+    <tr>
+      <th>154</th>
+      <td>DRR138983</td>
+      <td>ASM223467v1</td>
+      <td>st32</td>
+      <td>NaN</td>
+      <td>101.00</td>
+      <td>st32_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>155</th>
+      <td>DRR138984</td>
+      <td>ASM223467v1</td>
+      <td>st32</td>
+      <td>NaN</td>
+      <td>101.00</td>
+      <td>st32_rep4</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>156</th>
+      <td>DRR138985</td>
+      <td>ASM223467v1</td>
+      <td>st32</td>
+      <td>NaN</td>
+      <td>101.00</td>
+      <td>st32_rep5</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>157</th>
+      <td>GSM4558126</td>
+      <td>ASM223467v1</td>
+      <td>st32</td>
+      <td>NaN</td>
+      <td>101.00</td>
+      <td>st32_rep6</td>
+      <td>NaN</td>
+      <td>https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi...</td>
+    </tr>
+    <tr>
+      <th>158</th>
+      <td>GSM4558127</td>
+      <td>ASM223467v1</td>
+      <td>st32</td>
+      <td>NaN</td>
+      <td>101.00</td>
+      <td>st32_rep7</td>
+      <td>NaN</td>
+      <td>https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi...</td>
+    </tr>
+    <tr>
+      <th>159</th>
+      <td>DRR138986</td>
+      <td>ASM223467v1</td>
+      <td>st36</td>
+      <td>NaN</td>
+      <td>144.00</td>
+      <td>st36_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>160</th>
+      <td>DRR138987</td>
+      <td>ASM223467v1</td>
+      <td>st36</td>
+      <td>NaN</td>
+      <td>144.00</td>
+      <td>st36_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>161</th>
+      <td>DRR138988</td>
+      <td>ASM223467v1</td>
+      <td>st36</td>
+      <td>NaN</td>
+      <td>144.00</td>
+      <td>st36_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>162</th>
+      <td>GSM4039587</td>
+      <td>ASM223467v1</td>
+      <td>st36</td>
+      <td>NaN</td>
+      <td>144.00</td>
+      <td>st36_rep4</td>
+      <td>NaN</td>
+      <td>https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi...</td>
+    </tr>
+    <tr>
+      <th>163</th>
+      <td>GSM4558128</td>
+      <td>ASM223467v1</td>
+      <td>st36</td>
+      <td>NaN</td>
+      <td>144.00</td>
+      <td>st36_rep5</td>
+      <td>NaN</td>
+      <td>https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi...</td>
+    </tr>
+    <tr>
+      <th>164</th>
+      <td>GSM4039588</td>
+      <td>ASM223467v1</td>
+      <td>st38</td>
+      <td>NaN</td>
+      <td>192.00</td>
+      <td>st38_rep1</td>
+      <td>NaN</td>
+      <td>https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi...</td>
+    </tr>
+    <tr>
+      <th>165</th>
+      <td>GSM4558129</td>
+      <td>ASM223467v1</td>
+      <td>st38</td>
+      <td>NaN</td>
+      <td>192.00</td>
+      <td>st38_rep2</td>
+      <td>NaN</td>
+      <td>https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi...</td>
+    </tr>
+    <tr>
+      <th>166</th>
+      <td>DRR138989</td>
+      <td>ASM223467v1</td>
+      <td>st40</td>
+      <td>NaN</td>
+      <td>216.00</td>
+      <td>st40_rep1</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>167</th>
+      <td>DRR138990</td>
+      <td>ASM223467v1</td>
+      <td>st40</td>
+      <td>NaN</td>
+      <td>216.00</td>
+      <td>st40_rep2</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>168</th>
+      <td>DRR139001</td>
+      <td>ASM223467v1</td>
+      <td>st40</td>
+      <td>NaN</td>
+      <td>216.00</td>
+      <td>st40_rep3</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>169</th>
+      <td>DRR138991</td>
+      <td>ASM223467v1</td>
+      <td>st40</td>
+      <td>NaN</td>
+      <td>216.00</td>
+      <td>st40_rep4</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>170</th>
+      <td>DRR139002</td>
+      <td>ASM223467v1</td>
+      <td>st40</td>
+      <td>NaN</td>
+      <td>216.00</td>
+      <td>st40_rep5</td>
+      <td>NaN</td>
+      <td>https://doi.org/10.1186/s40851-019-0148-9</td>
+    </tr>
+    <tr>
+      <th>171</th>
+      <td>GSM4039589</td>
+      <td>ASM223467v1</td>
+      <td>st40</td>
+      <td>NaN</td>
+      <td>216.00</td>
+      <td>st40_rep6</td>
+      <td>NaN</td>
+      <td>https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi...</td>
+    </tr>
+    <tr>
+      <th>172</th>
+      <td>GSM4558130</td>
+      <td>ASM223467v1</td>
+      <td>st40</td>
+      <td>NaN</td>
+      <td>216.00</td>
+      <td>st40_rep7</td>
+      <td>NaN</td>
+      <td>https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="introduction.html" title="previous page">Developmental regulation</a>
+    <a class='right-next' id="next-link" href="../analysis/conserved%20motifs.html" title="next page">This is a title</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Maarten van der Sande, & Simon van Heeringen<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    
+  </body>
+</html>

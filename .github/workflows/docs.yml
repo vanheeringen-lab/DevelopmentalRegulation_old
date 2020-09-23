@@ -1,0 +1,38 @@
+name: docs
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - uses: conda-incubator/setup-miniconda@v1
+        with:
+          python-version: 3.7
+          mamba-version: "*"
+          channels: conda-forge,bioconda,defaults
+          channel-priority: true
+          activate-environment: DevelopmentalRegulation
+          environment-file: environment.yml
+
+      - name: Build 🔧
+        shell: bash -l {0}
+        # won't work without a nojekyll file
+        run: |
+          jupyter-book build .
+          touch _build/html/.nojekyll
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          ACCESS_TOKEN: ${{ secrets.AccessToken }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: _build/html # The folder the action should deploy.
+

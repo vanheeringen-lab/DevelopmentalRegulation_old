@@ -1,0 +1,14 @@
+# Book settings
+title: Inspirational Title
+author: Maarten van der Sande, & Simon van Heeringen
+
+#latex:
+#  latex_documents:
+#    targetname: book.tex
+
+#repository:
+#  url: https://github.com/vanheeringen-lab/cfb_book
+#  html:
+#    use_repository_button: true
+#    use_issues_button: true
+#    use_edit_page_button: true

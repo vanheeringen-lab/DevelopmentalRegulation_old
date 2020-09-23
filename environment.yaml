@@ -5,4 +5,17 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - put your conda dependencies in here
+  - python>=3.7
+  - numpy
+  - matplotlib
+  - pandas
+  - scipy
+  - jupyter
+  - scikit-learn
+  - gimmemotifs
+#  - gpy
+#  - python-louvain
+#  - networkx
+  - pip:
+    - scikit-misc
+    - jupyter-book

@@ -1,3 +1,4 @@
-- file: book/introduction
+- file: 'docs/introduction'
+- file: 'docs/preprocessing'
 - file: 'analysis/conserved motifs.ipynb'
 

@@ -1,0 +1,8 @@
+name: DevelopmentalRegulation
+
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - put your conda dependencies in here

@@ -1,2 +1,2 @@
-# DevelopmentalRegulation's analysis
-In this directory we store temporary files, which 
+# Developmental Regulation's analysis
+All the files related to the analysis can (should!) be found here.

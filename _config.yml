@@ -1,14 +1,17 @@
-# Book settings
+# book settings
 title: Developmental Conservation
 author: Maarten van der Sande, & Simon van Heeringen
+logo: docs/imgs/logo.png
 
-#latex:
-#  latex_documents:
-#    targetname: book.tex
+repository:
+  url: https://github.com/vanheeringen-lab/DevelopmentalBiology
+html:
+  use_repository_button: true
+  use_issues_button: true
+  use_edit_page_button: true
+  favicon: docs/imgs/logo.png
 
-#repository:
-#  url: https://github.com/vanheeringen-lab/cfb_book
-#  html:
-#    use_repository_button: true
-#    use_issues_button: true
-#    use_edit_page_button: true
+
+# execution
+execute:
+    execute_notebooks: force

@@ -1,2 +1,2 @@
-# DevelopmentalRegulation's temporary files
-In this directory we store temporary files, which 
+# Developmental regulation's data files
+All the (raw) data can be found here.

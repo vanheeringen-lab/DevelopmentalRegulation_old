@@ -37,7 +37,7 @@
     <link rel="shortcut icon" href="../_static/logo.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Preprocessing with seq2science" href="../docs/seq2science.html" />
+    <link rel="prev" title="Principal Component Analysis of “differential” peaks" href="pcas.py.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -91,10 +91,15 @@
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Preprocessing
+  Analysis
  </span>
 </p>
 <ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="pcas.py.html">
+   Principal Component Analysis of “differential” peaks
+  </a>
+ </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Cross-species conservation of motifs
@@ -142,7 +147,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/analysis/conserved motifs.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/analysis/conserved motifs.py.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -162,10 +167,10 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/vanheeringen-lab/DevelopmentalBiology/issues/new?title=Issue%20on%20page%20%2Fanalysis/conserved motifs.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/vanheeringen-lab/DevelopmentalBiology/issues/new?title=Issue%20on%20page%20%2Fanalysis/conserved motifs.py.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/vanheeringen-lab/DevelopmentalBiology/edit/master/analysis/conserved motifs.ipynb"><button
+        <a class="edit-button" href="https://github.com/vanheeringen-lab/DevelopmentalBiology/edit/master/analysis/conserved motifs.py.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -184,7 +189,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/vanheeringen-lab/DevelopmentalBiology/master?urlpath=tree/analysis/conserved motifs.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/vanheeringen-lab/DevelopmentalBiology/master?urlpath=tree/analysis/conserved motifs.py.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -192,7 +197,7 @@
         
         
         
-        <a class="colab-button" href="https://colab.research.google.com/github/vanheeringen-lab/DevelopmentalBiology/blob/master/analysis/conserved motifs.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+        <a class="colab-button" href="https://colab.research.google.com/github/vanheeringen-lab/DevelopmentalBiology/blob/master/analysis/conserved motifs.py.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
                 title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
                     src="../_static/images/logo_colab.png"
                     alt="Interact on Colab">Colab</button></a>
@@ -244,7 +249,7 @@
     <span class="n">assemblies</span> <span class="o">=</span> <span class="n">snakemake</span><span class="o">.</span><span class="n">params</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">glob</span>
-    <span class="n">assemblies</span> <span class="o">=</span> <span class="p">[</span><span class="n">assembly</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">assembly</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;gimme_smooth/**/activity.bayesianridge.score.out.txt&quot;</span><span class="p">)]</span>
+    <span class="n">assemblies</span> <span class="o">=</span> <span class="p">[</span><span class="n">assemblydir</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">assemblydir</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;gimme_smooth/**/activity.bayesianridge.score.out.txt&quot;</span><span class="p">)]</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">assemblies</span><span class="p">)</span>
     
@@ -277,7 +282,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/conserved motifs_3_0.png" src="../_images/conserved motifs_3_0.png" />
+<img alt="../_images/conserved motifs.py_3_0.png" src="../_images/conserved motifs.py_3_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -377,7 +382,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/conserved motifs_4_0.png" src="../_images/conserved motifs_4_0.png" />
+<img alt="../_images/conserved motifs.py_4_0.png" src="../_images/conserved motifs.py_4_0.png" />
 </div>
 </div>
 </div>
@@ -410,7 +415,7 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="../docs/seq2science.html" title="previous page">Preprocessing with seq2science</a>
+    <a class='left-prev' id="prev-link" href="pcas.py.html" title="previous page">Principal Component Analysis of “differential” peaks</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

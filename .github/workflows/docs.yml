@@ -11,7 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          persist-credentials: false
+          lfs: true
+      - name: Checkout LFS objects
+        run: git lfs checkout
 
       - uses: conda-incubator/setup-miniconda@v1
         with:

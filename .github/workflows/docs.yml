@@ -26,10 +26,10 @@ jobs:
 
       - name: Build 🔧
         shell: bash -l {0}
-        # won't work without a nojekyll file
         run: |
           jupyter-book build .
-          touch _build/html/.nojekyll
+          touch _build/html/.nojekyll # won't work without a nojekyll file
+          cp -r data/s2s_qc _build/html/_sources/data
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3

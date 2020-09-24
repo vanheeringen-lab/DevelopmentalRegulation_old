@@ -8,4 +8,5 @@
   chapters:
   - file: 'analysis/pcas.py.ipynb'
   - file: 'analysis/conserved motifs.py.ipynb'
+  - file: 'analysis/kmediods.py.ipynb'
 

@@ -13,9 +13,7 @@ dependencies:
   - jupyter
   - scikit-learn
   - gimmemotifs
-#  - gpy
-#  - python-louvain
-#  - networkx
   - pip:
     - scikit-misc
     - jupyter-book
+    - scikit-learn-extra

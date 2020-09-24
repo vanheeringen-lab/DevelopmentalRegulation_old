@@ -220,7 +220,14 @@
             <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
-            
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#horseshoe-pattern">
+   Horseshoe pattern
+  </a>
+ </li>
+</ul>
+
         </nav>
     </div>
 </div>
@@ -242,6 +249,7 @@
 <span class="kn">import</span> <span class="nn">matplotlib</span>
 <span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
 <span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1</span> <span class="kn">import</span> <span class="n">make_axes_locatable</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>
 
 <span class="kn">import</span> <span class="nn">util</span>
 </pre></div>
@@ -292,26 +300,6 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">assembly</span><span class="p">,</span> <span class="n">study</span> <span class="ow">in</span> <span class="n">studies</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">assembly</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">study</span><span class="p">)))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mm10 1
-ASM318616v1 1
-Astyanax_mexicanus-2.0 1
-Bl71nemr 1
-xenTro9 1
-danRer11 3
-ASM223467v1 3
-GRCg6a 1
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ncols</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="n">nrows</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dfs_true_values</span><span class="p">)</span> <span class="o">//</span> <span class="n">ncols</span>
 
@@ -332,7 +320,7 @@ GRCg6a 1
                             <span class="n">c</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">col</span><span class="p">)</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">idxs</span><span class="p">]]),</span>
                             <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gist_rainbow&quot;</span><span class="p">,</span>
                             <span class="n">marker</span><span class="o">=</span><span class="n">marker</span><span class="p">,</span>
-                            <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+                            <span class="n">s</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 
         <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
@@ -350,8 +338,13 @@ GRCg6a 1
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/pcas.py_4_0.png" src="../_images/pcas.py_4_0.png" />
+<img alt="../_images/pcas.py_3_0.png" src="../_images/pcas.py_3_0.png" />
 </div>
+</div>
+<div class="section" id="horseshoe-pattern">
+<h2>Horseshoe pattern<a class="headerlink" href="#horseshoe-pattern" title="Permalink to this headline">¶</a></h2>
+<p>The “horseshoe” shape of the pca’s (from a single experiment), seems to be explained by the relationship of the data. See this youtube video for an example</p>
+<p><a class="reference external" href="http://www.youtube.com/watch?v=DymA_1XUGBE"><img alt="" src="http://img.youtube.com/vi/DymA_1XUGBE/0.jpg" /></a></p>
 </div>
 </div>
 

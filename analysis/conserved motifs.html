@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>This is a title &#8212; Developmental Conservation</title>
+    <title>Cross-species conservation of motifs &#8212; Developmental Conservation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="../_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
@@ -97,7 +97,7 @@
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   This is a title
+   Cross-species conservation of motifs
   </a>
  </li>
 </ul>
@@ -218,12 +218,13 @@
         
               <div>
                 
-  <div class="section" id="this-is-a-title">
-<h1>This is a title<a class="headerlink" href="#this-is-a-title" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="cross-species-conservation-of-motifs">
+<h1>Cross-species conservation of motifs<a class="headerlink" href="#cross-species-conservation-of-motifs" title="Permalink to this headline">¶</a></h1>
+<p>I should write a nice summary and introduction here.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">itertools</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import everything</span>
+<span class="kn">import</span> <span class="nn">os</span>
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -231,119 +232,31 @@
 <span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1</span> <span class="kn">import</span> <span class="n">make_axes_locatable</span>
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">zscore</span>
 
-<span class="kn">from</span> <span class="nn">assembly_name</span> <span class="kn">import</span> <span class="n">ass2name</span>
+<span class="kn">import</span> <span class="nn">util</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">assembly</span> <span class="ow">in</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="s2">&quot;gimme_smooth&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]:</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">dfs</span><span class="p">[</span><span class="n">assembly</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;gimme_smooth/</span><span class="si">{</span><span class="n">assembly</span><span class="si">}</span><span class="s2">/activity.bayesianridge.score.out.txt&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
-        <span class="k">continue</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># del dfs[&quot;Bl71nemr&quot;]</span>
-<span class="k">del</span> <span class="n">dfs</span><span class="p">[</span><span class="s2">&quot;ce11&quot;</span><span class="p">]</span>
-<span class="k">del</span> <span class="n">dfs</span><span class="p">[</span><span class="s2">&quot;dm6&quot;</span><span class="p">]</span>
-<span class="k">del</span> <span class="n">dfs</span><span class="p">[</span><span class="s2">&quot;ARS-UCD1.2&quot;</span><span class="p">]</span>
-<span class="k">del</span> <span class="n">dfs</span><span class="p">[</span><span class="s2">&quot;Spur_5.0&quot;</span><span class="p">]</span>
-<span class="k">del</span> <span class="n">dfs</span><span class="p">[</span><span class="s2">&quot;Phmamm_MTP2014&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make sure to work with the correct assemblies</span>
+<span class="k">if</span> <span class="s1">&#39;snakemake&#39;</span> <span class="ow">in</span> <span class="nb">globals</span><span class="p">():</span>
+    <span class="n">assemblies</span> <span class="o">=</span> <span class="n">snakemake</span><span class="o">.</span><span class="n">params</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">glob</span>
+    <span class="n">assemblies</span> <span class="o">=</span> <span class="p">[</span><span class="n">assembly</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">assembly</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;gimme_smooth/**/activity.bayesianridge.score.out.txt&quot;</span><span class="p">)]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">dfs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">assemblies</span><span class="p">)</span>
+    
+<span class="c1"># load the assemblies as dataframes</span>
+<span class="n">dfs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">assembly</span> <span class="ow">in</span> <span class="n">assemblies</span><span class="p">:</span> 
+    <span class="n">dfs</span><span class="p">[</span><span class="n">assembly</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;gimme_smooth/</span><span class="si">{</span><span class="n">assembly</span><span class="si">}</span><span class="s2">/activity.bayesianridge.score.out.txt&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">3</span><span class="o">-</span><span class="mi">2</span><span class="n">bc422ae61fa</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># del dfs[&quot;Bl71nemr&quot;]</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="k">del</span> <span class="n">dfs</span><span class="p">[</span><span class="s2">&quot;ce11&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="k">del</span> <span class="n">dfs</span><span class="p">[</span><span class="s2">&quot;dm6&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="k">del</span> <span class="n">dfs</span><span class="p">[</span><span class="s2">&quot;ARS-UCD1.2&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="k">del</span> <span class="n">dfs</span><span class="p">[</span><span class="s2">&quot;Spur_5.0&quot;</span><span class="p">]</span>
-
-<span class="ne">KeyError</span>: &#39;ce11&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">[</span><span class="s2">&quot;xenTro9&quot;</span><span class="p">]</span>
-<span class="n">df2</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">[</span><span class="s2">&quot;danRer11&quot;</span><span class="p">]</span>
-<span class="n">corr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;df1&#39;</span><span class="p">,</span> <span class="s1">&#39;df2&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;df2&#39;</span><span class="p">,</span> <span class="s1">&#39;df1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
-
-<span class="n">im</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">corr</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">df2</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">df1</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f11d7644850&gt;
-</pre></div>
-</div>
-<img alt="../_images/conserved motifs_4_1.png" src="../_images/conserved motifs_4_1.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">local_maximum</span><span class="p">(</span><span class="n">in_array</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
-    <span class="n">diam</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="n">pad_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">in_array</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="s1">&#39;minimum&#39;</span><span class="p">)</span>
-    
-    <span class="n">threshold</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">in_array</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
-    <span class="n">out_array</span> <span class="o">=</span> <span class="n">in_array</span> <span class="o">&gt;</span> <span class="n">threshold</span>
-    <span class="k">for</span> <span class="n">x_off</span><span class="p">,</span> <span class="n">y_off</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">diam</span><span class="p">),</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
-        <span class="n">x_stop</span> <span class="o">=</span> <span class="n">x_off</span><span class="o">-</span><span class="n">diam</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">x_off</span><span class="o">-</span><span class="n">diam</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span>
-        <span class="n">y_stop</span> <span class="o">=</span> <span class="n">y_off</span><span class="o">-</span><span class="n">diam</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">y_off</span><span class="o">-</span><span class="n">diam</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span>
-        <span class="n">out_array</span> <span class="o">&amp;=</span> <span class="n">in_array</span> <span class="o">&gt;=</span> <span class="n">pad_array</span><span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="n">x_off</span><span class="p">,</span> <span class="n">x_stop</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="n">y_off</span><span class="p">,</span> <span class="n">y_stop</span><span class="p">)]</span>
-    <span class="k">return</span> <span class="n">out_array</span>
-
-
-<span class="k">def</span> <span class="nf">get_outline</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
-    <span class="n">maxima</span> <span class="o">=</span> <span class="n">local_maximum</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
-    
-    <span class="n">ver_seg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">maxima</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:]</span> <span class="o">!=</span> <span class="n">maxima</span><span class="p">[:,:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">hor_seg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">maxima</span><span class="p">[</span><span class="mi">1</span><span class="p">:,:]</span> <span class="o">!=</span> <span class="n">maxima</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,:])</span>
-
-    <span class="n">l</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">hor_seg</span><span class="p">):</span>
-        <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-        <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-        <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">))</span>
-
-    <span class="c1"># and the same for vertical segments</span>
-    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">ver_seg</span><span class="p">):</span>
-        <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-        <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-        <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">))</span>
-
-    <span class="c1"># now we transform the list into a numpy array of Nx2 shape</span>
-    <span class="n">segments</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
-
-    <span class="c1"># now we need to know something about the image which is shown</span>
-    <span class="c1">#   at this point let&#39;s assume it has extents (x0, y0)..(x1,y1) on the axis</span>
-    <span class="c1">#   drawn with origin=&#39;lower&#39;</span>
-    <span class="c1"># with this information we can rescale our points</span>
-    <span class="n">offset</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span>
-    <span class="n">x0</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">+</span> <span class="n">offset</span>
-    <span class="n">x1</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df1</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">+</span> <span class="n">offset</span>
-    <span class="n">y0</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">+</span> <span class="n">offset</span>
-    <span class="n">y1</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df2</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">+</span> <span class="n">offset</span>
-
-    <span class="n">segments</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x0</span> <span class="o">+</span> <span class="p">(</span><span class="n">x1</span><span class="o">-</span><span class="n">x0</span><span class="p">)</span> <span class="o">*</span> <span class="n">segments</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span>
-    <span class="n">segments</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y0</span> <span class="o">+</span> <span class="p">(</span><span class="n">y1</span><span class="o">-</span><span class="n">y0</span><span class="p">)</span> <span class="o">*</span> <span class="n">segments</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">y1</span> <span class="o">-</span> <span class="n">y0</span><span class="p">)</span>
-    
-    <span class="k">return</span> <span class="n">segments</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">segments</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">maxima</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;mm10&#39;, &#39;ASM318616v1&#39;, &#39;Astyanax_mexicanus-2.0&#39;, &#39;Bl71nemr&#39;, &#39;xenTro9&#39;, &#39;danRer11&#39;, &#39;ASM223467v1&#39;, &#39;GRCg6a&#39;]
 </pre></div>
 </div>
 </div>
@@ -352,10 +265,10 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fix</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
 
-<span class="n">df1</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">[</span><span class="s2">&quot;danRer11&quot;</span><span class="p">]</span>
+<span class="n">df1</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">[</span><span class="s2">&quot;Bl71nemr&quot;</span><span class="p">]</span>
 <span class="n">df2</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">[</span><span class="s2">&quot;ASM318616v1&quot;</span><span class="p">]</span>
 <span class="n">corr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;df1&#39;</span><span class="p">,</span> <span class="s1">&#39;df2&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;df2&#39;</span><span class="p">,</span> <span class="s1">&#39;df1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
-<span class="o">*</span><span class="n">outline</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">get_outline</span><span class="p">(</span><span class="n">corr</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="o">*</span><span class="n">outline</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">get_outline</span><span class="p">(</span><span class="n">corr</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">outline</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">.</span><span class="mi">5</span><span class="p">),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">corr</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">),</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">ndenumerate</span><span class="p">(</span><span class="n">corr</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
@@ -364,7 +277,86 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/conserved motifs_6_0.png" src="../_images/conserved motifs_6_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="nn">/usr/share/miniconda/envs/DevelopmentalRegulation/lib/python3.8/site-packages/pandas/core/indexes/base.py</span> in <span class="ni">get_loc</span><span class="nt">(self, key, method, tolerance)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2890</span>             <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2891</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">casted_key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2892</span>             <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+
+<span class="nn">pandas/_libs/index.pyx</span> in <span class="ni">pandas._libs.index.IndexEngine.get_loc</span><span class="nt">()</span>
+
+<span class="nn">pandas/_libs/index.pyx</span> in <span class="ni">pandas._libs.index.IndexEngine.get_loc</span><span class="nt">()</span>
+
+<span class="nn">pandas/_libs/hashtable_class_helper.pxi</span> in <span class="ni">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="nt">()</span>
+
+<span class="nn">pandas/_libs/hashtable_class_helper.pxi</span> in <span class="ni">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="nt">()</span>
+
+<span class="ne">KeyError</span>: &#39;df2&#39;
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">3</span><span class="o">-</span><span class="n">d1ea50e4c040</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">df1</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">[</span><span class="s2">&quot;Bl71nemr&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">df2</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">[</span><span class="s2">&quot;ASM318616v1&quot;</span><span class="p">]</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">corr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;df1&#39;</span><span class="p">,</span> <span class="s1">&#39;df2&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;df2&#39;</span><span class="p">,</span> <span class="s1">&#39;df1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="o">*</span><span class="n">outline</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">get_outline</span><span class="p">(</span><span class="n">corr</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">outline</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">.</span><span class="mi">5</span><span class="p">),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="nn">/usr/share/miniconda/envs/DevelopmentalRegulation/lib/python3.8/site-packages/pandas/core/indexing.py</span> in <span class="ni">__getitem__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">    </span><span class="mi">871</span>                     <span class="c1"># AttributeError for IntervalTree get_value</span>
+<span class="g g-Whitespace">    </span><span class="mi">872</span>                     <span class="k">pass</span>
+<span class="ne">--&gt; </span><span class="mi">873</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitem_tuple</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">874</span>         <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">875</span>             <span class="c1"># we by definition only have the 0th axis</span>
+
+<span class="nn">/usr/share/miniconda/envs/DevelopmentalRegulation/lib/python3.8/site-packages/pandas/core/indexing.py</span> in <span class="ni">_getitem_tuple</span><span class="nt">(self, tup)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1042</span>     <span class="k">def</span> <span class="nf">_getitem_tuple</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tup</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1043</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1044</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitem_lowerdim</span><span class="p">(</span><span class="n">tup</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1045</span>         <span class="k">except</span> <span class="n">IndexingError</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1046</span>             <span class="k">pass</span>
+
+<span class="nn">/usr/share/miniconda/envs/DevelopmentalRegulation/lib/python3.8/site-packages/pandas/core/indexing.py</span> in <span class="ni">_getitem_lowerdim</span><span class="nt">(self, tup)</span>
+<span class="g g-Whitespace">    </span><span class="mi">784</span>                 <span class="c1"># We don&#39;t need to check for tuples here because those are</span>
+<span class="g g-Whitespace">    </span><span class="mi">785</span>                 <span class="c1">#  caught by the _is_nested_tuple_indexer check above.</span>
+<span class="ne">--&gt; </span><span class="mi">786</span>                 <span class="n">section</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitem_axis</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">787</span> 
+<span class="g g-Whitespace">    </span><span class="mi">788</span>                 <span class="c1"># We should never have a scalar section here, because</span>
+
+<span class="nn">/usr/share/miniconda/envs/DevelopmentalRegulation/lib/python3.8/site-packages/pandas/core/indexing.py</span> in <span class="ni">_getitem_axis</span><span class="nt">(self, key, axis)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1108</span>         <span class="c1"># fall thru to straight lookup</span>
+<span class="g g-Whitespace">   </span><span class="mi">1109</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_validate_key</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1110</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_label</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1111</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1112</span>     <span class="k">def</span> <span class="nf">_get_slice_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">slice_obj</span><span class="p">:</span> <span class="nb">slice</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+
+<span class="nn">/usr/share/miniconda/envs/DevelopmentalRegulation/lib/python3.8/site-packages/pandas/core/indexing.py</span> in <span class="ni">_get_label</span><span class="nt">(self, label, axis)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1057</span>     <span class="k">def</span> <span class="nf">_get_label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1058</span>         <span class="c1"># GH#5667 this will fail if the label is not present in the axis.</span>
+<span class="ne">-&gt; </span><span class="mi">1059</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1060</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1061</span>     <span class="k">def</span> <span class="nf">_handle_lowerdim_multi_index_axis0</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tup</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">):</span>
+
+<span class="nn">/usr/share/miniconda/envs/DevelopmentalRegulation/lib/python3.8/site-packages/pandas/core/generic.py</span> in <span class="ni">xs</span><span class="nt">(self, key, axis, level, drop_level)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3486</span>             <span class="n">loc</span><span class="p">,</span> <span class="n">new_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_loc_level</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">drop_level</span><span class="o">=</span><span class="n">drop_level</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3487</span>         <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">3488</span>             <span class="n">loc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3489</span> 
+<span class="g g-Whitespace">   </span><span class="mi">3490</span>             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+
+<span class="nn">/usr/share/miniconda/envs/DevelopmentalRegulation/lib/python3.8/site-packages/pandas/core/indexes/base.py</span> in <span class="ni">get_loc</span><span class="nt">(self, key, method, tolerance)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2891</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">casted_key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2892</span>             <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2893</span>                 <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
+<span class="g g-Whitespace">   </span><span class="mi">2894</span> 
+<span class="g g-Whitespace">   </span><span class="mi">2895</span>         <span class="k">if</span> <span class="n">tolerance</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="ne">KeyError</span>: &#39;df2&#39;
+</pre></div>
+</div>
+<img alt="../_images/conserved motifs_3_1.png" src="../_images/conserved motifs_3_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -411,7 +403,7 @@
                 
         <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">corr</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">df2</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">df1</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">assembly_1</span> <span class="o">!=</span> <span class="n">assembly_2</span><span class="p">:</span>
-            <span class="o">*</span><span class="n">outline</span><span class="p">,</span> <span class="n">maxima</span> <span class="o">=</span> <span class="n">get_outline</span><span class="p">(</span><span class="n">corr</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+            <span class="o">*</span><span class="n">outline</span><span class="p">,</span> <span class="n">maxima</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">get_outline</span><span class="p">(</span><span class="n">corr</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
             <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">outline</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">.</span><span class="mi">5</span><span class="p">),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">maxima</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
                 <span class="n">time_1_1</span><span class="p">,</span> <span class="n">time_1_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">maxima</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
@@ -435,7 +427,7 @@
         <span class="k">if</span> <span class="n">assembly_2_i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
 <span class="c1">#             ax.set_yticks(range(corr.shape[0]), minor=False)</span>
 <span class="c1">#             ax.set_yticklabels(corr.index, fontsize=14)</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ass2name</span><span class="p">[</span><span class="n">assembly_1</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">util</span><span class="o">.</span><span class="n">ass2name</span><span class="p">(</span><span class="n">assembly_1</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
             
 <span class="c1">#             for start, stop, color in get_bars(assembly_1).values():</span>
 <span class="c1">#                 p_start = float(corr.index[0])</span>
@@ -445,7 +437,7 @@
 <span class="c1">#                 add_bar_left(im, start, stop, color=color)</span>
 
         <span class="k">if</span> <span class="n">assembly_1_i</span> <span class="o">==</span> <span class="n">nr_assemblies</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">ass2name</span><span class="p">[</span><span class="n">assembly_2</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">util</span><span class="o">.</span><span class="n">ass2name</span><span class="p">(</span><span class="n">assembly_2</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
 <span class="c1">#             for start, stop, color in get_bars(assembly_2).values():</span>
 <span class="c1">#                 p_start = float(corr.columns[0])</span>
 <span class="c1">#                 p_stop = float(corr.columns[-1])</span>
@@ -464,40 +456,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                 150.0      24.0   average  mm10 &amp; GRCg6a
-GM.5.0.Sox.0001               0.652695  0.412859  0.532777         1394.0
-GM.5.0.Homeodomain.0001       0.820396  1.346897  1.083646         1654.0
-GM.5.0.Mixed.0001            -1.489634 -1.739927 -1.614781           26.0
-GM.5.0.Nuclear_receptor.0001  0.688814 -0.266827  0.210993         1115.0
-GM.5.0.Mixed.0002             0.546472  1.219680  0.883076         1586.0
-...                                ...       ...       ...            ...
-GM.5.0.C2H2_ZF.0316           0.264632  0.523122  0.393877         1264.0
-GM.5.0.C2H2_ZF.0317           1.113874  0.233577  0.673725         1478.0
-GM.5.0.Ets.0049               0.491361  1.755256  1.123308         1671.0
-GM.5.0.Unknown.0208          -1.039634 -0.887844 -0.963739          163.0
-GM.5.0.Homeodomain_POU.0026  -0.614036  0.115116 -0.249460          687.0
-
-[1796 rows x 4 columns]
-</pre></div>
-</div>
-<img alt="../_images/conserved motifs_7_1.png" src="../_images/conserved motifs_7_1.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;C1&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>
-                   <span class="s1">&#39;C2&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
-                   <span class="s1">&#39;C3&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">}})</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.34164079,  0.96225045, -1.1717002 ],
-       [-1.34164079, -1.34715063, -0.65094455],
-       [-0.4472136 ,  0.96225045,  0.39056673],
-       [ 0.4472136 , -0.57735027,  1.43207802]])
-</pre></div>
-</div>
+<img alt="../_images/conserved motifs_4_0.png" src="../_images/conserved motifs_4_0.png" />
 </div>
 </div>
 </div>

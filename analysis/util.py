@@ -7,6 +7,9 @@ import itertools
 import numpy as np
 
 
+# google spreadsheet url of samples
+samples_url = "https://docs.google.com/spreadsheets/d/1X2YiJ-ZlX5usBGFr2L_-Jmt_NkLDJeu8m2jq4OjyEXI/export?gid=664155010&format=tsv"
+
 # ass2name and name2ass are dictionaries that convert assembly 
 # names to human readable names and vice versa
 def ass2name(assembly):

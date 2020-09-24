@@ -4,7 +4,8 @@
   chapters:
   - file: 'docs/seq2science'
 
-- part: Preprocessing
+- part: Analysis
   chapters:
-  - file: 'analysis/conserved motifs.ipynb'
+  - file: 'analysis/pcas.py.ipynb'
+  - file: 'analysis/conserved motifs.py.ipynb'
 

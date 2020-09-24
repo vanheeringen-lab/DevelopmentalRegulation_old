@@ -1,16 +1,14 @@
 # DevelopmentalRegulation
-Put a short description of the project here
+Live documentation & analysis of cross-species developmental regulation
+
+## Which files can be found where?
+
+* analysis: 
+* data:
+* doc:
 
 ## Getting started
 Make sure you have [anaconda](https://docs.anaconda.com/anaconda/install/) installed:
-
-## Which files can be found where?
-We divided our files into 5 subfolders:
-* analysis:
-* data:
-* doc:
-* results:
-* tmp: 
 
 ## Installation
 First you have to install the environment:

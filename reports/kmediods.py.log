@@ -34,6 +34,6 @@ Here is a preview of the cell contents:
 -------------------
 ['import matplotlib.gridspec as gridspec', '', '# gridspec inside gridspec', 'f = plt.figure(figsize=(40, 20))', '']
 ...
-['        ax = gs[i]', "        ax.axis('off')", '', '', 'plt.plot()']
+['            if i == 0:', '                smallax.set_title(f"{util.ass2name(assembly)}")', '    else:', '        ax = gs[i]', "        ax.axis('off')"]
 -------------------
 

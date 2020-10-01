@@ -48,7 +48,7 @@ _ass2name = {
 }
 
 
-def _local_maximum(in_array, radius=4):
+def _local_maximum(in_array, radius=3):
     """
     private function to determine the maxima in a 2d array
     """

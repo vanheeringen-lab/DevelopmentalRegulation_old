@@ -3,10 +3,12 @@
 - part: Preprocessing
   chapters:
   - file: 'docs/seq2science'
+  - file: 'docs/QCreports.py.ipynb'
 
 - part: Analysis
   chapters:
   - file: 'analysis/pcas.py.ipynb'
-  - file: 'analysis/conserved motifs.py.ipynb'
   - file: 'analysis/kmediods.py.ipynb'
+  - file: 'analysis/conserved motifs.py.ipynb'
+  - file: 'analysis/Relative Cell.py.ipynb'
 

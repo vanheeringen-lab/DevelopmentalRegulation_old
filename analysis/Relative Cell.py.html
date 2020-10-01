@@ -1,0 +1,375 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cell contribution &#8212; Developmental Conservation</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.bfb7730f9caf2ec0b46a44615585038c.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.30270b6e4c972e43c488.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/logo.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Cross-species conservation of motifs" href="conserved%20motifs.py.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Developmental Conservation</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../docs/introduction.html">
+   Developmental regulation
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Preprocessing
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../docs/seq2science.html">
+   Preprocessing with seq2science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../docs/QCreports.py.html">
+   QC reports
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Analysis
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="pcas.py.html">
+   Principal Component Analysis of “differential” peaks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="kmediods.py.html">
+   Kmediods of peaks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="conserved%20motifs.py.html">
+   Cross-species conservation of motifs
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Cell contribution
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/analysis/Relative Cell.py.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/vanheeringen-lab/DevelopmentalBiology"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/vanheeringen-lab/DevelopmentalBiology/issues/new?title=Issue%20on%20page%20%2Fanalysis/Relative Cell.py.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/vanheeringen-lab/DevelopmentalBiology/edit/master/analysis/Relative Cell.py.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/vanheeringen-lab/DevelopmentalBiology/master?urlpath=tree/analysis/Relative Cell.py.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/vanheeringen-lab/DevelopmentalBiology/blob/master/analysis/Relative Cell.py.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="cell-contribution">
+<h1>Cell contribution<a class="headerlink" href="#cell-contribution" title="Permalink to this headline">¶</a></h1>
+<p>Since we are dealing with whole embryos, our results might be influenced by a couple cell types which occur a lot (e.g. brain). Luckily for us the recent paper, <em><a class="reference external" href="https://www.biorxiv.org/content/10.1101/2020.09.28.317784v1">Mapping single-cell atlases throughout Metazoa unravels cell type evolution</a></em>, provides us a way to quantify the number of cell types over time in the developing embryo of mouse, zebrafish and frog.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fix</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span><span class="mi">15</span><span class="p">),</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">species</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s2">&quot;zebrafish&quot;</span><span class="p">,</span> <span class="s2">&quot;mouse&quot;</span><span class="p">,</span> <span class="s2">&quot;xenopus&quot;</span><span class="p">]):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">species</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;../data/scmetazoamap/</span><span class="si">{</span><span class="n">species</span><span class="si">}</span><span class="s2">.tsv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">hpfs</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Hpf&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">()))</span>
+
+    <span class="c1">#</span>
+    <span class="n">counters</span> <span class="o">=</span> <span class="p">{</span><span class="n">hpf</span><span class="p">:</span> <span class="n">Counter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Hpf&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">hpf</span><span class="p">][</span><span class="s2">&quot;Cell type&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">hpf</span> <span class="ow">in</span> <span class="n">hpfs</span><span class="p">}</span>
+    <span class="n">counters</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">hpf</span><span class="p">:</span> <span class="p">{</span>
+            <span class="n">cell_type</span><span class="p">:</span> <span class="n">counts</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">counter</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+            <span class="k">for</span> <span class="n">cell_type</span><span class="p">,</span> <span class="n">counts</span> <span class="ow">in</span> <span class="n">counter</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">}</span> 
+        <span class="k">for</span> <span class="n">hpf</span><span class="p">,</span> <span class="n">counter</span> <span class="ow">in</span> <span class="n">counters</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="c1"># now get the top n nr of highest occurance cell types</span>
+    <span class="n">nr_distinct_cell_types</span> <span class="o">=</span> <span class="mi">15</span>
+    <span class="n">cell_types</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">key</span> <span class="k">for</span> <span class="n">hpf</span><span class="p">,</span> <span class="n">counter</span> <span class="ow">in</span> <span class="n">counters</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">counter</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
+    <span class="n">cell_types_contributions</span> <span class="o">=</span> <span class="p">{</span><span class="n">cell_type</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">counter</span><span class="p">[</span><span class="n">cell_type</span><span class="p">]</span> <span class="k">for</span> <span class="n">counter</span> <span class="ow">in</span> <span class="n">counters</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">cell_type</span> <span class="ow">in</span> <span class="n">counter</span><span class="p">)</span> <span class="k">for</span> <span class="n">cell_type</span> <span class="ow">in</span> <span class="n">cell_types</span><span class="p">}</span>
+    <span class="n">cell_types_contributions</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">cell_types_contributions</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+    <span class="n">distinct_cell_types</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">cell_types_contributions</span><span class="o">.</span><span class="n">keys</span><span class="p">())[:</span><span class="n">nr_distinct_cell_types</span><span class="p">]</span>
+
+    <span class="c1"># prepare the plot</span>
+    <span class="n">indices</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hpfs</span><span class="p">))</span>
+    <span class="n">bottom</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">hpf</span> <span class="ow">in</span> <span class="n">hpfs</span><span class="p">]</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="p">{</span><span class="n">cell_type</span><span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">cell_type</span> <span class="ow">in</span> <span class="n">distinct_cell_types</span><span class="p">}</span>
+    <span class="k">for</span> <span class="n">cell_type</span><span class="p">,</span> <span class="n">vals</span> <span class="ow">in</span> <span class="n">values</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">hpf</span> <span class="ow">in</span> <span class="n">hpfs</span><span class="p">:</span>
+            <span class="n">vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">counters</span><span class="p">[</span><span class="n">hpf</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cell_type</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+
+    <span class="c1"># and plot</span>
+    <span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s2">&quot;tab20b&quot;</span><span class="p">,</span> <span class="n">nr_distinct_cell_types</span><span class="p">)</span>
+    <span class="n">color_order</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">nr_distinct_cell_types</span><span class="p">))</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">color_order</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">stackplot</span><span class="p">(</span><span class="n">hpfs</span><span class="p">,</span> <span class="n">values</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span>
+                 <span class="n">labels</span><span class="o">=</span><span class="n">values</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="n">cmap</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">color_order</span><span class="p">[:</span><span class="n">nr_distinct_cell_types</span><span class="p">]])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="n">hpfs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">hpfs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Relative Cell.py_2_0.png" src="../_images/Relative Cell.py_2_0.png" />
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./analysis"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="conserved%20motifs.py.html" title="previous page">Cross-species conservation of motifs</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Maarten van der Sande, & Simon van Heeringen<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.30270b6e4c972e43c488.js"></script>
+
+
+    
+  </body>
+</html>

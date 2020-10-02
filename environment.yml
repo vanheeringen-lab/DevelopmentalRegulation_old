@@ -13,6 +13,7 @@ dependencies:
   - jupyter
   - scikit-learn
   - gimmemotifs
+  - pip
   - pip:
     - scikit-misc
     - jupyter-book

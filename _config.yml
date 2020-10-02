@@ -11,6 +11,9 @@ html:
   use_edit_page_button: true
   favicon: docs/imgs/logo.png
 
+launch_buttons:
+  binderhub_url: https://mybinder.org
+
 
 # execution
 execute:

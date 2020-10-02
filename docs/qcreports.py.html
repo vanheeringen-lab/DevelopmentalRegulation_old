@@ -56,7 +56,7 @@
     <link rel="shortcut icon" href="../_static/logo.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Principal Component Analysis of “differential” peaks" href="../analysis/pcas.py.html" />
+    <link rel="next" title="Differential peak selection" href="../analysis/differential_peaks.py.html" />
     <link rel="prev" title="Preprocessing with seq2science" href="seq2science.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -121,8 +121,13 @@
 </p>
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="../analysis/pcas.py.html">
-   Principal Component Analysis of “differential” peaks
+  <a class="reference internal" href="../analysis/differential_peaks.py.html">
+   Differential peak selection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../analysis/gimme_maelstrom.py.html">
+   gimme maelstrom
   </a>
  </li>
  <li class="toctree-l1">
@@ -131,12 +136,17 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../analysis/conserved%20motifs.py.html">
+  <a class="reference internal" href="../analysis/pcas.py.html">
+   Principal Component Analysis of “differential” peaks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../analysis/conserved_motifs.py.html">
    Cross-species conservation of motifs
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../analysis/Relative%20Cell.py.html">
+  <a class="reference internal" href="../analysis/relative_cell.py.html">
    Cell contribution
   </a>
  </li>
@@ -182,7 +192,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/docs/QCreports.py.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/docs/qcreports.py.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -202,10 +212,10 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/vanheeringen-lab/DevelopmentalBiology/issues/new?title=Issue%20on%20page%20%2Fdocs/QCreports.py.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/vanheeringen-lab/DevelopmentalBiology/issues/new?title=Issue%20on%20page%20%2Fdocs/qcreports.py.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/vanheeringen-lab/DevelopmentalBiology/edit/master/docs/QCreports.py.ipynb"><button
+        <a class="edit-button" href="https://github.com/vanheeringen-lab/DevelopmentalBiology/edit/master/docs/qcreports.py.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -224,7 +234,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/vanheeringen-lab/DevelopmentalBiology/master?urlpath=tree/docs/QCreports.py.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/vanheeringen-lab/DevelopmentalBiology/master?urlpath=tree/docs/qcreports.py.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -232,7 +242,7 @@
         
         
         
-        <a class="colab-button" href="https://colab.research.google.com/github/vanheeringen-lab/DevelopmentalBiology/blob/master/docs/QCreports.py.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+        <a class="colab-button" href="https://colab.research.google.com/github/vanheeringen-lab/DevelopmentalBiology/blob/master/docs/qcreports.py.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
                 title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
                     src="../_static/images/logo_colab.png"
                     alt="Interact on Colab">Colab</button></a>
@@ -255,6 +265,7 @@
                 
   <div class="section" id="qc-reports">
 <h1>QC reports<a class="headerlink" href="#qc-reports" title="Permalink to this headline">¶</a></h1>
+<p>These are the quality reports generated by seq2science per species</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -315,7 +326,7 @@
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="seq2science.html" title="previous page">Preprocessing with seq2science</a>
-    <a class='right-next' id="next-link" href="../analysis/pcas.py.html" title="next page">Principal Component Analysis of “differential” peaks</a>
+    <a class='right-next' id="next-link" href="../analysis/differential_peaks.py.html" title="next page">Differential peak selection</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

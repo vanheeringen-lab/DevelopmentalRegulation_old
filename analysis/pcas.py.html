@@ -56,8 +56,8 @@
     <link rel="shortcut icon" href="../_static/logo.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Kmediods of peaks" href="kmediods.py.html" />
-    <link rel="prev" title="QC reports" href="../docs/QCreports.py.html" />
+    <link rel="next" title="Cross-species conservation of motifs" href="conserved_motifs.py.html" />
+    <link rel="prev" title="Kmediods of peaks" href="kmediods.py.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -109,7 +109,7 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../docs/QCreports.py.html">
+  <a class="reference internal" href="../docs/qcreports.py.html">
    QC reports
   </a>
  </li>
@@ -120,9 +120,14 @@
  </span>
 </p>
 <ul class="current nav sidenav_l1">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Principal Component Analysis of “differential” peaks
+ <li class="toctree-l1">
+  <a class="reference internal" href="differential_peaks.py.html">
+   Differential peak selection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gimme_maelstrom.py.html">
+   gimme maelstrom
   </a>
  </li>
  <li class="toctree-l1">
@@ -130,13 +135,18 @@
    Kmediods of peaks
   </a>
  </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Principal Component Analysis of “differential” peaks
+  </a>
+ </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="conserved%20motifs.py.html">
+  <a class="reference internal" href="conserved_motifs.py.html">
    Cross-species conservation of motifs
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Relative%20Cell.py.html">
+  <a class="reference internal" href="relative_cell.py.html">
    Cell contribution
   </a>
  </li>
@@ -269,7 +279,8 @@
                 
   <div class="section" id="principal-component-analysis-of-differential-peaks">
 <h1>Principal Component Analysis of “differential” peaks<a class="headerlink" href="#principal-component-analysis-of-differential-peaks" title="Permalink to this headline">¶</a></h1>
-<div class="cell docutils container">
+<p>We select …</p>
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import everything</span>
 <span class="kn">import</span> <span class="nn">os</span>
@@ -287,7 +298,7 @@
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load all our (meta)data</span>
 <span class="n">samples</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">util</span><span class="o">.</span><span class="n">samples_url</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -298,8 +309,6 @@
     <span class="n">assemblies</span> <span class="o">=</span> <span class="n">snakemake</span><span class="o">.</span><span class="n">params</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="n">assemblies</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="s2">&quot;gimme_smooth&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">assemblies</span><span class="p">)</span>
     
 <span class="c1"># get the &quot;differential&quot; peaks </span>
 <span class="n">dfs_smooth</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
@@ -323,13 +332,8 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;mm10&#39;, &#39;mm10&#39;, &#39;ASM318616v1&#39;, &#39;Astyanax_mexicanus-2.0&#39;, &#39;Bl71nemr&#39;, &#39;xenTro9&#39;, &#39;danRer11&#39;, &#39;ASM223467v1&#39;, &#39;GRCg6a&#39;]
-</pre></div>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ncols</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="n">nrows</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dfs_true_values</span><span class="p">)</span> <span class="o">//</span> <span class="n">ncols</span>
@@ -374,7 +378,7 @@
 </div>
 <div class="section" id="horseshoe-pattern">
 <h2>Horseshoe pattern<a class="headerlink" href="#horseshoe-pattern" title="Permalink to this headline">¶</a></h2>
-<p>The “horseshoe” shape of the pca’s (from a single experiment), seems to be explained by the relationship of the data. See this youtube video for an example</p>
+<p>The “horseshoe” shape of the pca’s (from a single experiment), seems to be explained by the relationship of the data. See this youtube video for an “explanation” without actual explanation. When there are multiple datasets from different labs for a species, the PCA plot does not get the horseshoe shape.</p>
 <p><a class="reference external" href="http://www.youtube.com/watch?v=DymA_1XUGBE"><img alt="" src="http://img.youtube.com/vi/DymA_1XUGBE/0.jpg" /></a></p>
 </div>
 </div>
@@ -407,8 +411,8 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="../docs/QCreports.py.html" title="previous page">QC reports</a>
-    <a class='right-next' id="next-link" href="kmediods.py.html" title="next page">Kmediods of peaks</a>
+    <a class='left-prev' id="prev-link" href="kmediods.py.html" title="previous page">Kmediods of peaks</a>
+    <a class='right-next' id="next-link" href="conserved_motifs.py.html" title="next page">Cross-species conservation of motifs</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
